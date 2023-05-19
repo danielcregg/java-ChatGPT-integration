@@ -9,12 +9,6 @@ public class Main {
             .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.0.0") // required to bypass Cloudflare: google 'what is my user agent'
             .build(); // builds the ChatGPT client
 
-
-
-        chatGpt.getComplexAccessCache().refreshAccessToken() // refreshing cache and verifies session token
-    .whenComplete((accessToken) -> { // called when the promise is completed, not required
-        System.out.println("Access token: " + accessToken);
-    });
         Conversation conversation = chatGpt.createConversation();
         conversation.sendMessageAsync("Hello!")
             .whenComplete((response) -> { // called when the promise is completed with its response
